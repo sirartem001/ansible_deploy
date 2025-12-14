@@ -1,0 +1,23 @@
+- name: Deploy Python API
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Pull Docker image from registry
+      docker_image:
+        name: "localhost:5000/python-api:latest"
+        source: pull
+
+    - name: Stop and remove existing container
+      docker_container:
+        name: python-api-container
+        state: absent
+      ignore_errors: yes
+
+    - name: Run Docker container
+      docker_container:
+        name: python-api-container
+        image: "localhost:5000/python-api:latest"
+        state: started
+        restart_policy: always
+        ports:
+          - "5001:5000"
