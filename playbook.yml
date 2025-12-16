@@ -4,7 +4,7 @@
   tasks:
     - name: Pull Docker image from registry
       docker_image:
-        name: "localhost:5000/python-api:latest"
+        name: "localhost:5002/python-api:latest"
         source: pull
 
     - name: Stop and remove existing container
@@ -20,4 +20,4 @@
         state: started
         restart_policy: always
         ports:
-          - "5001:5000"
+          - "5001:5001"
