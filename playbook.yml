@@ -16,7 +16,7 @@
     - name: Run Docker container
       docker_container:
         name: python-api-container
-        image: "localhost:5000/python-api:latest"
+        image: "localhost:5002/python-api:latest"
         state: started
         restart_policy: always
         ports:
